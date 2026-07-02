@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Home",
+    "driveThru": "Drive-Thru System",
+    "digitalSignage": "Digital Signage",
+    "kiosk": "Kiosk",
+    "projects": "Projects",
+    "articles": "Articles",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "badge": "Smart Tech Solutions for Restaurants and Cafes",
+    "title": "Transform Your Customer Experience with",
+    "brand": "InfinityTech",
+    "description": "We provide integrated technology solutions including Drive-Thru ordering systems, self-service interactive kiosks, digital signage solutions, AI-powered CCTV systems, and smart order management integrations, helping businesses enhance customer experience, improve operational efficiency, and drive sales growth.",
+    "ctaPrimary": "Get a Free Demo",
+    "ctaSecondary": "Explore Services",
+    "stats": {
+      "clients": "Satisfied Clients",
+      "experience": "Years Experience",
+      "devices": "Devices Installed",
+      "country": "Saudi Arabia"
+    }
+  },
+  "about": {
+    "title": "Welcome to InfinityTech SA!",
+    "description": "InfinityTech is a leading provider of smart digital solutions that transform the way restaurants and retail businesses interact with their customers. We deliver self-service kiosks, intelligent ordering systems, interactive digital displays, and integrated order management solutions designed to improve operational efficiency, enhance customer satisfaction, and drive revenue growth."
+  },
+  "partners": {
+    "title": "Partnering with Restaurants Everywhere!",
+    "description": "Thousands of local and international F&B brands trust InfinityTech to manage their operations, from drive-thru systems, digital signage, and order management to payments and inventory."
+  },
+  "services": {
+    "badge": "Integrated Drive-Thru System",
+    "title": "The Fastest Drive-Thru System in the Region"
+  },
+  "stats": {
+    "eyebrow": "OUR ACHIEVEMENTS IN NUMBERS",
+    "title": "Real Results for Real Clients"
+  },
+  "unique": {
+    "eyebrow": "OUR DIFFERENCE",
+    "title": "What Makes Us",
+    "titleHighlight": "Unique",
+    "description": "We distinguish ourselves with tailored, all-in-one solutions delivering innovative technology that enhances customer experiences while adapting to your business needs.",
+    "features": {
+      "integrated": {
+        "number": "01",
+        "title": "End-to-End Provision",
+        "description": "We manage projects from staging and testing to deployment and ongoing support — fully handled by our team."
+      },
+      "support": {
+        "number": "02",
+        "title": "24/7 Customer Support",
+        "description": "A dedicated support team ensuring smooth operations and reliable technology performance."
+      },
+      "customizable": {
+        "number": "03",
+        "title": "Customisable Technology",
+        "description": "Flexible technology solutions designed to fit your business needs and integrate seamlessly."
+      }
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Our Partners",
+    "title": "Why Enterprise Brands Trust",
+    "titleHighlight": "InfinityTech",
+    "description": "See what operational directors and tech leaders at major fast-food chains and restaurants in KSA say about their partnership with us."
+  },
+  "projects": {
+    "eyebrow": "OUR PROJECTS",
+    "title": "Featured",
+    "titleHighlight": "Completed Projects",
+    "description": "Real examples of projects we delivered for our clients in the restaurant and commercial sectors."
+  },
+  "articles": {
+    "eyebrow": "ARTICLES & BLOG",
+    "title": "Latest",
+    "titleHighlight": "Articles & Insights",
+    "description": "Articles and insights from InfinityTech experts on the future of technology in the restaurant industry.",
+    "readMore": "Read More →"
+  },
+  "contact": {
+    "eyebrow": "GET IN TOUCH",
+    "title": "Ready to",
+    "titleHighlight": "Transform Your Restaurant?",
+    "description": "Talk to one of our experts today and get a free consultation tailored to your needs.",
+    "infoTitle": "Let's Start Together",
+    "infoDescription": "The InfinityTech team is ready to help you choose the right solution for your restaurant or restaurant chain. Send us your details and we'll get back to you within 24 hours.",
+    "form": {
+      "name": "Full Name *",
+      "email": "Email Address *",
+      "phone": "Phone Number *",
+      "brand": "Brand Name *",
+      "locations": "Number of Locations *",
+      "country": "Country *",
+      "message": "Tell us about your needs...",
+      "demo": "I'd like to request a demo",
+      "submit": "Send Message",
+      "success": "✓ Your message was sent successfully! We'll be in touch soon.",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "footer": {
+    "tagline": "We are a company specialized in technology solutions for restaurants and commercial establishments in the Arab region and worldwide.",
+    "services": "Services",
+    "company": "Company",
+    "support": "Support",
+    "links": {
+      "digitalSignage": "Digital Signage",
+      "kiosk": "Self-Order Kiosks",
+      "drivethru": "Drive-Thru",
+      "contentManagement": "Content Management",
+      "about": "About Us",
+      "projects": "Our Projects",
+      "articles": "Articles",
+      "careers": "Careers",
+      "contactUs": "Contact Us",
+      "techSupport": "Technical Support",
+      "privacy": "Privacy Policy"
+    },
+    "copyright": "© 2025 InfinityTech. All rights reserved.",
+    "madeIn": "Made with ❤ in Saudi Arabia"
+  },
+  "common": {
+    "exploreMore": "Explore More →",
+    "backToHome": "Back to Home",
+    "getFreeDemo": "Get a Free Demo",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noResults": "No results found"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "error": "Invalid credentials"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "totalLeads": "Total Leads",
+      "newLeads": "New Leads",
+      "publishedProducts": "Published Products",
+      "publishedArticles": "Published Articles"
+    }
+  }
+}
