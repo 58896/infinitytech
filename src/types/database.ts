@@ -20,12 +20,32 @@ export interface Database {
           hero_badge_ar: string
           hero_badge_en: string
           accent_color: string
+          accent_grad: string
+          badge_icon: string
           hero_image_url: string | null
           overview_image_url: string | null
           features_ar: Json
           features_en: Json
           stats_ar: Json
           stats_en: Json
+          title_grad_ar: string
+          title_grad_en: string
+          title_plain_ar: string
+          title_plain_en: string
+          grad_first: boolean
+          overview_content_first: boolean
+          overview_label_ar: string
+          overview_label_en: string
+          overview_title_ar: string
+          overview_title_en: string
+          overview_desc_ar: string
+          overview_desc_en: string
+          overview_special_right: string | null
+          sections_data: Json
+          cta_title_ar: string
+          cta_title_en: string
+          cta_desc_ar: string
+          cta_desc_en: string
           cta_product_url: string | null
           is_published: boolean
           sort_order: number
@@ -56,6 +76,14 @@ export interface Database {
           published_at: string | null
           is_published: boolean
           related_product_slug: string | null
+          accent_color: string
+          accent_grad: string
+          badge_icon: string
+          date_ar: string
+          date_en: string
+          body_blocks: Json
+          related_articles: Json
+          article_cta: Json | null
           seo_title_ar: string | null
           seo_title_en: string | null
           seo_description_ar: string | null

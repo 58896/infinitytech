@@ -12,9 +12,17 @@ import ProjectsSection from '@/components/home/ProjectsSection'
 import ArticlesSection from '@/components/home/ArticlesSection'
 import ContactSection from '@/components/home/ContactSection'
 import UniqueSection from '@/components/home/UniqueSection'
+import { getProjects } from '@/lib/db/projects'
+import { getTestimonials } from '@/lib/db/testimonials'
+
+export const revalidate = 3600
 
 export default async function HomePage() {
-  const locale = await getLocale()
+  const [locale, projects, testimonials] = await Promise.all([
+    getLocale(),
+    getProjects(),
+    getTestimonials(),
+  ])
 
   return (
     <>
@@ -109,8 +117,8 @@ export default async function HomePage() {
 
         <StatsSection locale={locale} />
         <UniqueSection />
-        <TestimonialsSection />
-        <ProjectsSection />
+        <TestimonialsSection testimonials={testimonials} />
+        <ProjectsSection projects={projects} />
         <ArticlesSection />
         <ContactSection />
       </main>
