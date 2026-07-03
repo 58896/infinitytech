@@ -33,6 +33,24 @@ ul { list-style: none; }
    GRADIENT TEXT UTILITY
    ============================================================ */
 @layer utilities {
+  /* Admin panel shared input style */
+  .admin-input {
+    background: #111827;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.625rem;
+    padding: 0.5rem 0.75rem;
+    color: #fff;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .admin-input:focus {
+    border-color: rgba(0,114,255,0.5);
+  }
+  .admin-input::placeholder {
+    color: rgba(255,255,255,0.2);
+  }
+
   .gradient-text {
     background: linear-gradient(90deg, var(--primary), var(--accent));
     -webkit-background-clip: text;

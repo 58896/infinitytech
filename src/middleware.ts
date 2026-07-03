@@ -8,8 +8,16 @@ const intlMiddleware = createMiddleware(routing)
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // Protect /[locale]/admin routes
-  if (pathname.match(/^\/(ar|en)\/admin/)) {
+  // Protect /[locale]/admin routes — skip the login page to avoid redirect loops
+  if (
+    pathname.match(/^\/(ar|en)\/admin/) &&
+    !pathname.match(/^\/(ar|en)\/admin\/login/)
+  ) {
+    // Allow through when Supabase is not yet configured (frontend-only dev mode)
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      return intlMiddleware(request)
+    }
+
     let response = NextResponse.next({ request })
 
     const supabase = createServerClient(
