@@ -60,7 +60,7 @@ export default function FeatureSection({
       style={{ background: alt ? 'var(--dark2)' : 'var(--dark)' }}
     >
       <div className="max-w-content mx-auto px-6">
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-20 items-center ${reversed ? 'md:[direction:rtl]' : ''}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-20 items-center ${reversed ? (isRTL ? 'md:[direction:ltr]' : 'md:[direction:rtl]') : ''}`}>
           {/* Image */}
           <RevealWrapper direction={reversed ? 'left' : 'right'}>
             <div className="rounded-[20px] overflow-hidden" style={{ direction: 'ltr' }}>

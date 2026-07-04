@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 export default function Footer() {
   const t = useTranslations('footer')
@@ -66,13 +67,16 @@ export default function Footer() {
             <h4 className="text-[0.9rem] font-bold uppercase tracking-[1.5px] text-white/50 mb-5">{t('company')}</h4>
             <ul className="flex flex-col gap-2.5">
               {[
-                { href: '/#about',    label: t('links.about') },
-                { href: '/#projects', label: t('links.projects') },
-                { href: '/#articles', label: t('links.articles') },
-                { href: '#',          label: t('links.careers') },
-              ].map(({ href, label }) => (
+                { href: '/#about',    label: t('links.about'),   page: false },
+                { href: '/#projects', label: t('links.projects'), page: false },
+                { href: '/#articles', label: t('links.articles'), page: false },
+                { href: '/careers',   label: t('links.careers'),  page: true },
+              ].map(({ href, label, page }) => (
                 <li key={label}>
-                  <a href={href} className="text-white/60 text-[0.9rem] transition-colors hover:text-primary">{label}</a>
+                  {page
+                    ? <Link href={href} className="text-white/60 text-[0.9rem] transition-colors hover:text-primary">{label}</Link>
+                    : <a href={href} className="text-white/60 text-[0.9rem] transition-colors hover:text-primary">{label}</a>
+                  }
                 </li>
               ))}
             </ul>

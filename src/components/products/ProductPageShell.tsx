@@ -29,6 +29,7 @@ function SectionHeader({ eyebrow_ar, eyebrow_en, title_ar, title_en, accent, loc
 function CardsSection({ s, accent, locale }: { s: Extract<Section, { type: 'cards' }> | Extract<Section, { type: 'gamification' }>; accent: string; locale: string }) {
   const cols = s.type === 'gamification' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
   const items = s.type === 'gamification' ? s.items : s.cards
+  const isAr = locale === 'ar'
   return (
     <section style={{ background: s.bg === 'dark' ? 'var(--dark)' : 'var(--dark2)', padding: '5rem 0' }}>
       <div className="max-w-content mx-auto px-6">
@@ -39,7 +40,7 @@ function CardsSection({ s, accent, locale }: { s: Extract<Section, { type: 'card
               <div className="rounded-[18px] p-8 transition-all duration-300 relative overflow-hidden group"
                 style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
               >
-                <div className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                <div className={`absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${isAr ? 'origin-right' : 'origin-left'}`}
                   style={{ background: `linear-gradient(90deg,${accent},var(--accent2,#ff4da6))` }} />
                 <div className="w-14 h-14 rounded-[14px] flex items-center justify-center text-2xl mb-4"
                   style={{ background: `${accent}1a` }}>
@@ -389,7 +390,7 @@ export default function ProductPageShell({ product }: { product: Product }) {
         <section id="overview" style={{ background: 'var(--dark2)', padding: '5rem 0' }}>
           <div className="max-w-content mx-auto px-6">
             <RevealWrapper>
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${product.overviewContentFirst ? 'lg:[direction:ltr]' : ''}`}>
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${product.overviewContentFirst && !isAr ? 'lg:[direction:ltr]' : ''}`}>
                 {!product.overviewContentFirst && product.overviewImage && (
                   <div className="rounded-[20px] overflow-hidden">
                     <img src={product.overviewImage} alt="" className="w-full object-cover rounded-[20px]" style={{ height: 420 }}

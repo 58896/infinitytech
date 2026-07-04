@@ -129,12 +129,12 @@ export default function ServicesSection() {
               key={card.title}
               className={`
                 rounded-[24px] p-10 flex transition-all duration-300 hover:-translate-y-2
-                ${card.wide ? 'md:col-span-2 flex-row-reverse items-center gap-12' : 'flex-col gap-8'}
+                ${card.wide ? `md:col-span-2 ${isRTL ? 'flex-row' : 'flex-row-reverse'} items-center gap-12` : 'flex-col gap-8'}
               `}
               style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.06)' }}
             >
               {/* Text */}
-              <div className="flex flex-col items-start text-right flex-1">
+              <div className="flex flex-col items-start flex-1">
                 <span className="text-[0.8rem] font-bold mb-2.5" style={{ color: '#4361ee' }}>{card.tag}</span>
                 <h3 className="text-[1.6rem] font-bold mb-2 text-white">{card.title}</h3>
                 <p className="text-[0.98rem] leading-[1.6] mb-6" style={{ color: '#94a3b8' }}>{card.desc}</p>
