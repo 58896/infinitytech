@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { adminFrom, isAdminConfigured } from '@/lib/supabase/admin'
+import { requireAdminSession } from '@/lib/supabase/assert-admin'
 
 type Result = { error?: string; success?: boolean; id?: string }
 
@@ -20,6 +21,8 @@ function testimonialPayload(formData: FormData) {
 }
 
 export async function createTestimonial(formData: FormData): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { data, error } = await adminFrom('testimonials').insert(testimonialPayload(formData)).select('id').single()
   if (error) return { error: error.message }
@@ -29,6 +32,8 @@ export async function createTestimonial(formData: FormData): Promise<Result> {
 }
 
 export async function updateTestimonial(id: string, formData: FormData): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { error } = await adminFrom('testimonials').update(testimonialPayload(formData)).eq('id', id)
   if (error) return { error: error.message }
@@ -38,6 +43,8 @@ export async function updateTestimonial(id: string, formData: FormData): Promise
 }
 
 export async function deleteTestimonial(id: string): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { error } = await adminFrom('testimonials').delete().eq('id', id)
   if (error) return { error: error.message }

@@ -32,6 +32,14 @@ export async function submitJobApplication(formData: FormData): Promise<JobResul
 
   if (!isAdminConfigured()) return { success: true }
 
+  // Verify the job listing exists and is published
+  const { data: job } = await adminFrom('job_listings')
+    .select('id')
+    .eq('id', parsed.data.job_listing_id)
+    .eq('is_published', true)
+    .maybeSingle()
+  if (!job) return { error: 'Job listing not found or not accepting applications' }
+
   let resume_url: string | null = null
   const resumeFile = formData.get('resume') as File | null
 

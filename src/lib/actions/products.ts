@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { adminFrom, isAdminConfigured } from '@/lib/supabase/admin'
+import { requireAdminSession } from '@/lib/supabase/assert-admin'
 
 type Result = { error?: string; success?: boolean }
 
@@ -15,6 +16,8 @@ export async function updateProductMeta(
     is_published?: boolean
   }
 ): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { error } = await adminFrom('products').update(data).eq('slug', slug)
   if (error) return { error: error.message }

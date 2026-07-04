@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { adminFrom, isAdminConfigured } from '@/lib/supabase/admin'
+import { requireAdminSession } from '@/lib/supabase/assert-admin'
 
 type Result = { error?: string; success?: boolean; id?: string }
 
@@ -23,6 +24,8 @@ function projectPayload(formData: FormData) {
 }
 
 export async function createProject(formData: FormData): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { data, error } = await adminFrom('projects').insert(projectPayload(formData)).select('id').single()
   if (error) return { error: error.message }
@@ -32,6 +35,8 @@ export async function createProject(formData: FormData): Promise<Result> {
 }
 
 export async function updateProject(id: string, formData: FormData): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { error } = await adminFrom('projects').update(projectPayload(formData)).eq('id', id)
   if (error) return { error: error.message }
@@ -41,6 +46,8 @@ export async function updateProject(id: string, formData: FormData): Promise<Res
 }
 
 export async function deleteProject(id: string): Promise<Result> {
+  const authError = await requireAdminSession()
+  if (authError) return { error: authError }
   if (!isAdminConfigured()) return { error: 'Supabase not configured' }
   const { error } = await adminFrom('projects').delete().eq('id', id)
   if (error) return { error: error.message }
