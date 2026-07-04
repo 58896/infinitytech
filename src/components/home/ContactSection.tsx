@@ -2,10 +2,13 @@
 
 import { useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import { createClient } from '@/lib/supabase/client'
+import { submitContact } from '@/lib/actions/contact'
+
+type FieldErrors = Partial<Record<string, string[]>>
 
 export default function ContactSection() {
   const t = useTranslations('contact')
+  const tCommon = useTranslations('common')
   const locale = useLocale()
   const isRTL = locale === 'ar'
 
@@ -13,25 +16,36 @@ export default function ContactSection() {
     full_name: '', email: '', phone: '', brand_name: '',
     num_locations: '', country: '', message: '', wants_demo: false,
   })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'rate_limited'>('idle')
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
+    setFieldErrors({})
 
-    try {
-      const supabase = createClient()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error } = await supabase.from('leads').insert([form] as any)
-      if (error) throw error
+    const result = await submitContact(form)
+
+    if (result.success) {
       setStatus('success')
       setForm({ full_name: '', email: '', phone: '', brand_name: '', num_locations: '', country: '', message: '', wants_demo: false })
       setTimeout(() => setStatus('idle'), 5000)
-    } catch {
+    } else if (result.fieldErrors) {
+      setFieldErrors(result.fieldErrors)
+      setStatus('idle')
+    } else if (result.error === 'rate_limited') {
+      setStatus('rate_limited')
+      setTimeout(() => setStatus('idle'), 5000)
+    } else {
+      setErrorMessage(result.error || t('form.error'))
       setStatus('error')
       setTimeout(() => setStatus('idle'), 5000)
     }
   }
+
+  const fieldErr = (name: keyof typeof form) =>
+    fieldErrors[name]?.[0]
 
   return (
     <section id="contact" className="py-20" style={{ background: 'var(--dark2)' }}>
@@ -73,10 +87,16 @@ export default function ContactSection() {
             style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
           >
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <input required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-                placeholder={t('form.name')} className="form-input col-span-1" />
-              <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder={t('form.email')} className="form-input col-span-1" />
+              <div>
+                <input required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })}
+                  placeholder={t('form.name')} className={`form-input w-full${fieldErr('full_name') ? ' border-accent2' : ''}`} />
+                {fieldErr('full_name') && <p className="text-accent2 text-[0.78rem] mt-1">{fieldErr('full_name')}</p>}
+              </div>
+              <div>
+                <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder={t('form.email')} className={`form-input w-full${fieldErr('email') ? ' border-accent2' : ''}`} />
+                {fieldErr('email') && <p className="text-accent2 text-[0.78rem] mt-1">{fieldErr('email')}</p>}
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -103,13 +123,16 @@ export default function ContactSection() {
               className="w-full font-bold py-4 rounded-xl text-[1rem] text-[#111] transition-all hover:opacity-90 hover:-translate-y-px disabled:opacity-70"
               style={{ background: 'linear-gradient(90deg, var(--primary), var(--secondary))' }}
             >
-              {status === 'loading' ? '...' : t('form.submit')}
+              {status === 'loading' ? tCommon('loading') : t('form.submit')}
             </button>
             {status === 'success' && (
               <p className="text-center mt-4 font-semibold" style={{ color: '#00c864' }}>{t('form.success')}</p>
             )}
             {status === 'error' && (
-              <p className="text-center mt-4 font-semibold text-accent2">{t('form.error')}</p>
+              <p className="text-center mt-4 font-semibold text-accent2">{errorMessage || t('form.error')}</p>
+            )}
+            {status === 'rate_limited' && (
+              <p className="text-center mt-4 font-semibold text-accent2">{t('form.rateLimited')}</p>
             )}
           </form>
         </div>
@@ -130,6 +153,7 @@ export default function ContactSection() {
         }
         .form-input:focus { border-color: var(--primary); }
         .form-input::placeholder { color: rgba(255,255,255,0.4); }
+        .border-accent2 { border-color: var(--accent2) !important; }
       `}</style>
     </section>
   )

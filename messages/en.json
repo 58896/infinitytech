@@ -6,7 +6,9 @@
     "kiosk": "Kiosk",
     "projects": "Projects",
     "articles": "Articles",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "demo": "Free Demo",
+    "careers": "Careers"
   },
   "hero": {
     "badge": "Smart Tech Solutions for Restaurants and Cafes",
@@ -98,7 +100,69 @@
       "demo": "I'd like to request a demo",
       "submit": "Send Message",
       "success": "✓ Your message was sent successfully! We'll be in touch soon.",
-      "error": "Something went wrong. Please try again."
+      "error": "Something went wrong. Please try again.",
+      "rateLimited": "Too many submissions. Please wait 15 minutes and try again."
+    }
+  },
+  "demo": {
+    "meta": {
+      "title": "Request a Free Demo — InfinityTech",
+      "description": "Schedule a free demo of InfinityTech's restaurant technology solutions."
+    },
+    "eyebrow": "FREE DEMO",
+    "title": "See InfinityTech",
+    "titleHighlight": "In Action",
+    "description": "Fill in your details and our team will schedule a personalised demo of our solutions tailored to your restaurant.",
+    "form": {
+      "name": "Full Name *",
+      "email": "Email Address *",
+      "phone": "Phone Number",
+      "brand": "Brand / Restaurant Name",
+      "locations": "Number of Locations",
+      "country": "Country",
+      "productInterest": "Product of Interest (optional)",
+      "products": {
+        "drive-thru": "Drive-Thru System",
+        "digital-signage": "Digital Signage",
+        "kiosk": "Self-Order Kiosk",
+        "ai-camera": "AI Camera",
+        "customer-feedback": "Customer Feedback",
+        "zoom-nitro": "ZOOM Nitro",
+        "leaderboard": "Leaderboard"
+      },
+      "submit": "Request Demo",
+      "success": "✓ Demo request received! Our team will contact you within 24 hours.",
+      "error": "Something went wrong. Please try again.",
+      "rateLimited": "Too many requests. Please wait a moment and try again."
+    }
+  },
+  "careers": {
+    "meta": {
+      "title": "Careers — InfinityTech",
+      "description": "Join the InfinityTech team and help shape the future of restaurant technology in Saudi Arabia."
+    },
+    "eyebrow": "JOIN OUR TEAM",
+    "title": "Build the Future of",
+    "titleHighlight": "Restaurant Tech",
+    "description": "We're a fast-growing technology company based in Riyadh. Join us and help shape the future of dining experiences across the region.",
+    "noJobs": "No open positions right now. Check back soon!",
+    "applyNow": "Apply Now",
+    "modal": {
+      "title": "Submit Your Application",
+      "name": "Full Name *",
+      "email": "Email Address *",
+      "phone": "Phone Number",
+      "coverLetter": "Cover Letter (optional)",
+      "resume": "Attach Resume / CV",
+      "resumeHint": "PDF, DOC, DOCX — max 5 MB",
+      "fileTooLarge": "File exceeds 5 MB. Please upload a smaller file.",
+      "invalidFileType": "Only PDF, DOC and DOCX files are accepted.",
+      "submit": "Submit Application",
+      "successTitle": "Application Submitted!",
+      "successBody": "Thank you for applying. We'll review your application and get back to you soon.",
+      "close": "Close",
+      "error": "Something went wrong. Please try again.",
+      "rateLimited": "Too many submissions. Please try again later."
     }
   },
   "footer": {

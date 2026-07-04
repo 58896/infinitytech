@@ -26,12 +26,13 @@ export default function Header() {
   }
 
   const navLinks = [
-    { href: '/#home',            label: t('home') },
-    { href: '/#services',        label: t('driveThru') },
-    { href: '/#digital-signage', label: t('digitalSignage') },
-    { href: '/#kiosk',           label: t('kiosk') },
-    { href: '/#projects',        label: t('projects') },
-    { href: '/#articles',        label: t('articles') },
+    { href: '/#home',            label: t('home'),         page: false },
+    { href: '/#services',        label: t('driveThru'),    page: false },
+    { href: '/#digital-signage', label: t('digitalSignage'), page: false },
+    { href: '/#kiosk',           label: t('kiosk'),        page: false },
+    { href: '/#projects',        label: t('projects'),     page: false },
+    { href: '/#articles',        label: t('articles'),     page: false },
+    { href: '/careers',          label: t('careers'),      page: true },
   ]
 
   return (
@@ -99,22 +100,31 @@ export default function Header() {
           <ul className="hidden md:flex items-center gap-0.5 flex-nowrap">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-white/85 px-2.5 py-2 rounded-lg text-[0.9rem] font-medium transition-all hover:text-primary hover:bg-primary/10 whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
+                {link.page ? (
+                  <Link
+                    href={link.href}
+                    className="text-white/85 px-2.5 py-2 rounded-lg text-[0.9rem] font-medium transition-all hover:text-primary hover:bg-primary/10 whitespace-nowrap"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    className="text-white/85 px-2.5 py-2 rounded-lg text-[0.9rem] font-medium transition-all hover:text-primary hover:bg-primary/10 whitespace-nowrap"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
             <li>
-              <a
-                href="/#contact"
+              <Link
+                href="/demo"
                 className="px-5 py-2 rounded-[10px] text-[0.9rem] font-bold whitespace-nowrap text-[#111]"
                 style={{ background: 'linear-gradient(90deg, #00c6ff, #0072ff)' }}
               >
-                {t('contact')}
-              </a>
+                {t('demo')}
+              </Link>
             </li>
           </ul>
         </nav>
@@ -125,24 +135,34 @@ export default function Header() {
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="block text-white/85 px-3 py-2.5 rounded-lg text-[0.9rem] font-medium hover:text-primary hover:bg-primary/10 transition-all"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
+                  {link.page ? (
+                    <Link
+                      href={link.href}
+                      className="block text-white/85 px-3 py-2.5 rounded-lg text-[0.9rem] font-medium hover:text-primary hover:bg-primary/10 transition-all"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="block text-white/85 px-3 py-2.5 rounded-lg text-[0.9rem] font-medium hover:text-primary hover:bg-primary/10 transition-all"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
               <li>
-                <a
-                  href="/#contact"
+                <Link
+                  href="/demo"
                   className="block px-3 py-2.5 rounded-lg text-[0.9rem] font-bold text-[#111] mt-1"
                   style={{ background: 'linear-gradient(90deg, #00c6ff, #0072ff)' }}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {t('contact')}
-                </a>
+                  {t('demo')}
+                </Link>
               </li>
             </ul>
           </div>
